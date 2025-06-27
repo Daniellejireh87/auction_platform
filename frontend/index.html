@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Connexion</h1>
+        <form onsubmit="login(); return false;">
+            <input type="email" id="login_email" placeholder="Email" required>
+            <input type="password" id="login_password" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+        <p>Pas encore inscrit ? <a href="register.html">Créer un compte</a></p>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

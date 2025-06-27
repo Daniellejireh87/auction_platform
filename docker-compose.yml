@@ -1,0 +1,49 @@
+services:
+  user:
+    build:
+      context: ./user
+    container_name: auction_user
+    ports:
+      - "8011:8000"
+    depends_on:
+      - mongo
+
+  auction:
+    build:
+      context: ./auction
+    container_name: auction_service
+    ports:
+      - "8012:8000"
+    depends_on:
+      - mongo
+
+  bid:
+    build:
+      context: ./bid
+    container_name: bid_service
+    ports:
+      - "8013:8000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: auction_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - user
+      - auction
+      - bid
+
+  mongo:
+    image: mongo
+    container_name: auction_mongo
+    ports:
+      - "21020:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer une Enchère</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Nouvelle Enchère</h1>
+        <form onsubmit="createAuction(); return false;">
+            <input type="text" id="title" placeholder="Titre" required>
+            <textarea id="description" placeholder="Description" required></textarea>
+            <input type="number" id="starting_price" placeholder="Prix de départ" required>
+            <input type="datetime-local" id="ends_at" required>
+            <button type="submit">Créer</button>
+        </form>
+        <p><a href="auctions.html">Voir les enchères</a></p>
+    </div>
+    <script src="js/auction.js"></script>
+</body>
+</html>
