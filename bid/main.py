@@ -5,7 +5,7 @@ from bson import ObjectId
 from datetime import datetime
 
 app = FastAPI()
-client = MongoClient("mongodb://mongo:21020")
+client = MongoClient("mongodb://auction_mongo:27017")
 db = client["auction_db"]
 bids = db["bids"]
 auctions = db["auctions"]
@@ -31,4 +31,7 @@ def place_bid(bid: BidCreate):
 
 @app.get("/bids/{auction_id}")
 def list_bids(auction_id: str):
-    return [dict(bid, _id=str(bid["_id"])) for bid in bids.find({"auction_id": auction_id})]
+    return [
+        dict(bid, _id=str(bid["_id"]))
+        for bid in bids.find({"auction_id": auction_id}).sort("amount", -1)
+    ]

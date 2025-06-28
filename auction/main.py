@@ -14,7 +14,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-client = MongoClient("mongodb://mongo:21020")
+client = MongoClient("mongodb://auction_mongo:27017")
+
 db = client["auction_db"]
 auctions = db["auctions"]
 
