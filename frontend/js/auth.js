@@ -12,17 +12,14 @@ async function register() {
     });
 
     const data = await res.json();
-    alert(data.message || data.detail);
-}
-
-
-    const data = await res.json();
-    alert(data.message || data.detail);
 
     if (res.ok) {
-        window.location.href = "index.html"; // Redirection après inscription
+        alert(data.message || "Inscription réussie !");
+        window.location.href = "login.html"; // Redirection vers login après inscription
+    } else {
+        alert(data.detail || "Erreur lors de l'inscription");
     }
-
+}
 
 async function login() {
     const email = document.getElementById('login_email').value;
@@ -35,6 +32,7 @@ async function login() {
     });
 
     const data = await res.json();
+
     if (data.access_token) {
         localStorage.setItem('token', data.access_token);
         alert("Connexion réussie !");

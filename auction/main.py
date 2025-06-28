@@ -25,6 +25,8 @@ class AuctionCreate(BaseModel):
     ends_at: str
     owner_id: str
 
+
+
 @app.post("/create")
 def create_auction(auction: AuctionCreate):
     auction_dict = auction.dict()
@@ -46,3 +48,7 @@ def delete_auction(auction_id: str):
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Enchère non trouvée")
     return {"message": "Enchère supprimée"}
+
+@app.get("/auctions")
+def list_all_auctions():
+    return [dict(auction, _id=str(auction["_id"])) for auction in auctions.find()]
